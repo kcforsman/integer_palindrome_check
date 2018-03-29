@@ -1,28 +1,21 @@
 # Returns true if the input positive integer number forms a palindrome. Returns false otherwise.
-require "pry"
 def is_palindrome(number)
   return false if number == nil || number < 0
-  reversed_number = reverse_number(number)
-  if number == reversed_number
-    true
-  else
-    false
-  end
+  reverse_number(number)
 end
 
 def reverse_number(number)
-  digits = []
-  i = 0
-  while number > 10**i
-    digit = (number/10**(i)) % 10
-    digits << digit
-    i += 1
+  j = 0
+  k = 0
+  until number < 10**k
+    k += 1
   end
-  reversed_number = 0
-  length = digits.length
-  length.times do |x|
-    length -= 1
-    reversed_number += digits[x] * 10**(length)
+  while j < k
+    k -= 1
+    if (number/(10**j)) % 10 != (number/(10**k)) % 10
+      return false
+    end
+    j += 1
   end
-  reversed_number
+  true
 end
